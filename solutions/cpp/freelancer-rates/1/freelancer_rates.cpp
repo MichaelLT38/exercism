@@ -1,0 +1,17 @@
+#include <cmath>
+
+double daily_rate(double hourly_rate) {
+    return hourly_rate * 8;
+}
+
+double apply_discount(double price, double discount) {
+    return price * (1.0 - discount / 100.0);
+}
+
+int monthly_rate(double hourly_rate, double discount) {
+    return static_cast<int>(std::ceil(apply_discount(daily_rate(hourly_rate), discount) * 22));
+}
+
+int days_in_budget(int budget, double hourly_rate, double discount) {
+    return static_cast<int>(std::floor(budget / apply_discount(daily_rate(hourly_rate), discount)));
+}
